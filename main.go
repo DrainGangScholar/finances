@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+    "github.com/gin-contrib/cors"
 )
 
 type Income struct {
@@ -78,6 +79,7 @@ func create_item(c *gin.Context, items *[]Item) {
 func main() {
 	items := generate_test_data(10)
 	router := gin.Default()
+	router.Use(cors.Default())
 	router.GET("/items", func(c *gin.Context) {
 		get_items(c, items)
 	})
